@@ -43,6 +43,7 @@ class ExecutionManager:
         workflow = self.workflow_repository.get_by_id(workflow_id)
         if workflow is None or workflow.tenant_id != tenant_id:
             raise LookupError("Workflow not found")
+        workflow_definition = json.loads(workflow.definition_json or "{}")
 
         execution = Execution(
             id=f"execution_{uuid4().hex[:12]}",
@@ -55,7 +56,7 @@ class ExecutionManager:
         )
         self.execution_repository.create(execution)
         workflow_state.create_lifecycle(execution.id, workflow_id, tenant_id, idempotency_key, input_payload)
-        scheduler.schedule_execution(execution.id, workflow_id, tenant_id, input_payload, idempotency_key)
+        scheduler.schedule_execution(execution.id, workflow_id, tenant_id, input_payload, workflow_definition, idempotency_key)
         execution_state.queue_execution(execution.id, workflow_id, tenant_id, idempotency_key)
         record_usage(tenant_id, "executions", 1)
         return execution

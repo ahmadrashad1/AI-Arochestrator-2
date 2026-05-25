@@ -12,6 +12,7 @@ class Scheduler:
 		workflow_id: str,
 		tenant_id: str,
 		input_payload: dict[str, Any],
+		workflow_definition: dict[str, Any] | None = None,
 		idempotency_key: str | None = None,
 	) -> str:
 		task = event_bus.publish(
@@ -21,6 +22,7 @@ class Scheduler:
 				"workflow_id": workflow_id,
 				"tenant_id": tenant_id,
 				"input_payload": input_payload,
+				"workflow_definition": workflow_definition or {},
 				"idempotency_key": idempotency_key,
 			},
 		)

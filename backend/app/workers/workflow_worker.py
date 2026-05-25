@@ -34,18 +34,32 @@ def process_next_workflow_job(execution_repository: ExecutionRepository, runner:
 
 		# perform the work
 		runner = runner or WorkflowRunner()
-		plan = runner.build_execution_plan(payload.get("workflow_id"), execution_id, payload.get("input_payload"))
+		plan = runner.build_execution_plan(
+			payload.get("workflow_id"),
+			execution_id,
+			payload.get("input_payload"),
+			payload.get("workflow_definition"),
+		)
 		output = plan.get("output_payload")
+		status = output.get("status") if isinstance(output, dict) else "completed"
 
-		# mark completed in state and persist outputs
-		execution_state.mark_completed(execution_id)
+		# mark state based on the graph result and persist outputs
+		if status == "paused":
+			execution_state.mark_running(execution_id)
+			shared_state.transition(execution_id, "paused")
+		elif status == "failed":
+			execution_state.mark_failed(execution_id, str(output.get("error") if isinstance(output, dict) else "graph failed"))
+			shared_state.transition(execution_id, "failed")
+		else:
+			execution_state.mark_completed(execution_id)
+			shared_state.transition(execution_id, "completed")
 		try:
 			if execution is None:
 				execution = execution_repository.get_by_id(execution_id)
 			if execution is not None:
 				import json as _json
 
-				execution.status = "completed"
+				execution.status = status if status in {"paused", "failed", "completed"} else "completed"
 				execution.output_payload_json = _json.dumps(output)
 				execution.completed_at = datetime.now(timezone.utc)
 				execution_repository.update(execution)
