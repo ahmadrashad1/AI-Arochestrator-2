@@ -82,4 +82,7 @@ python -m pytest backend/app/tests/integration/test_workflow_create_run.py -q
 Notes:
 - The DB seed script uses `sqlite:///./ai_orchestrator.db` by default (see `backend/app/database/connection.py`). Change `DATABASE_URL` in `.env` to point at Postgres or another DB when needed.
 - LLM access uses `XAI_API_KEY` for Grok/xAI. Put it in the repo-root `.env` file (copied from `.env.example`) or export it in your shell before starting the backend.
+- LLM access uses `XAI_API_KEY` for Grok/xAI. Put it in the repo-root `.env` file (copied from `.env.example`) or export it in your shell before starting the backend.
+
+CI/CD docs: see [docs/CI_CD.md](docs/CI_CD.md) for instructions on rotating the XAI key and configuring repository secrets used by GitHub Actions.
 - For production use prefer request-scoped sessions or a `scoped_session` pattern instead of the long-lived session created by the runtime prototype.
