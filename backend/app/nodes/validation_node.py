@@ -15,7 +15,10 @@ def run(state: dict[str, Any]) -> dict[str, Any]:
         state["plan"] = {"objective": input_payload.get("goal") or "complete workflow"}
 
     state["validation"] = {"ok": True}
-    state["next_node"] = "tool_execution" if (input_payload.get("tool_request") or input_payload.get("tool_name")) else None
+    if state.get("graph_name") == "lead_generation":
+        state["next_node"] = "tool_execution"
+    else:
+        state["next_node"] = "tool_execution" if (input_payload.get("tool_request") or input_payload.get("tool_name")) else None
     if state["next_node"] is None:
         state["status"] = "completed"
     return state

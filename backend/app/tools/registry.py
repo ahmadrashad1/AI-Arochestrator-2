@@ -32,7 +32,8 @@ def _resolve_tool_spec(tool_name: str) -> Tuple[str, str, str]:
     module_name: full module import path
     attr_name: function name or 'Tool' for class-based tools
     """
-    candidates = [f"app.tools.{tool_name}_tool", f"app.tools.{tool_name}"]
+    normalized = tool_name.replace("/", ".").strip(".")
+    candidates = [f"app.tools.{normalized}_tool", f"app.tools.{normalized}"]
     funcs = ("run", "execute", "process", "process_tool", "run_tool", "execute_tool")
     for mod_name in candidates:
         try:
