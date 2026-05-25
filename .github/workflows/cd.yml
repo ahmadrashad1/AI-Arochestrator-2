@@ -37,23 +37,87 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/ai-orchestrator-2:latest
             ghcr.io/${{ github.repository_owner }}/ai-orchestrator-2:${{ github.sha }}
 
-  deploy:
-    name: Optional deploy (runs only if `DEPLOY_TARGET` secret is set)
+  ecs-deploy:
+    name: Deploy to AWS ECS (optional)
     needs: build-and-push
     runs-on: ubuntu-latest
-    if: ${{ secrets.DEPLOY_SSH_KEY != '' }}
+    if: ${{ secrets.AWS_ACCESS_KEY_ID != '' && secrets.AWS_SECRET_ACCESS_KEY != '' && secrets.ECS_CLUSTER != '' && secrets.ECS_SERVICE != '' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.8.1
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Deploy to host via SSH
+      - name: Update ECS service to force new deployment
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "docker pull ghcr.io/${{ github.repository_owner }}/ai-orchestrator-2:latest && docker stop ai-orchestrator || true && docker rm ai-orchestrator || true && docker run -d --name ai-orchestrator -p 8000:8000 ghcr.io/${{ github.repository_owner }}/ai-orchestrator-2:latest"
+          aws ecs update-service --cluster ${{ secrets.ECS_CLUSTER }} --service ${{ secrets.ECS_SERVICE }} --force-new-deployment
+
+  gke-deploy:
+    name: Deploy to GKE (optional)
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    if: ${{ secrets.GCP_SA_KEY != '' && secrets.GKE_CLUSTER != '' && secrets.GKE_LOCATION != '' && secrets.GCP_PROJECT != '' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ secrets.GCP_PROJECT }}
+
+      - name: Get credentials for GKE
+        run: |
+          gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER }} --zone ${{ secrets.GKE_LOCATION }} --project ${{ secrets.GCP_PROJECT }}
+
+      - name: Roll deployment image
+        run: |
+          kubectl set image deployment/${{ secrets.GKE_DEPLOYMENT }} *="ghcr.io/${{ github.repository_owner }}/ai-orchestrator-2:latest"
+
+  aks-deploy:
+    name: Deploy to AKS (optional)
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    if: ${{ secrets.AZURE_CREDENTIALS != '' && secrets.AKS_RESOURCE_GROUP != '' && secrets.AKS_CLUSTER != '' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Get AKS credentials
+        run: |
+          az aks get-credentials --resource-group ${{ secrets.AKS_RESOURCE_GROUP }} --name ${{ secrets.AKS_CLUSTER }}
+
+      - name: Roll deployment image
+        run: |
+          kubectl set image deployment/${{ secrets.AKS_DEPLOYMENT }} *="ghcr.io/${{ github.repository_owner }}/ai-orchestrator-2:latest"
+
+  helm-deploy:
+    name: Helm / Kubernetes deploy (optional)
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    if: ${{ secrets.KUBE_CONFIG_DATA != '' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore kubeconfig
+        run: |
+          echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
+
+      - name: Helm upgrade/install
+        run: |
+          helm upgrade --install ai-orchestrator ./helm/ai-orchestrator --set image.repository=ghcr.io/${{ github.repository_owner }}/ai-orchestrator-2,image.tag=latest
 name: CD
 
 on:

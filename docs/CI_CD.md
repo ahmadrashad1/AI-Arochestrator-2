@@ -17,6 +17,18 @@ Add secrets to GitHub repository
    - `GITHUB_TOKEN` — (automatically provided by GitHub Actions) used to push to GHCR. If you need broader package permissions, create a PAT with `packages:write` and store it as `GHCR_PAT`, then update the workflow.
    - `DEPLOY_SSH_KEY` (optional) — private SSH key for deployment host.
    - `DEPLOY_USER` / `DEPLOY_HOST` (optional) — SSH user and host for deployment.
+   Additional optional deploy targets and required secrets
+
+   - AWS ECS:
+      - `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `ECS_CLUSTER`, `ECS_SERVICE`
+   - GKE (Google Kubernetes Engine):
+      - `GCP_SA_KEY` (JSON service account key), `GCP_PROJECT`, `GKE_CLUSTER`, `GKE_LOCATION`, `GKE_DEPLOYMENT`
+   - AKS (Azure Kubernetes Service):
+      - `AZURE_CREDENTIALS` (service principal JSON), `AKS_RESOURCE_GROUP`, `AKS_CLUSTER`, `AKS_DEPLOYMENT`
+   - Generic Kubernetes / Helm deploy:
+      - `KUBE_CONFIG_DATA` — base64-encoded kubeconfig for the target cluster. The CD workflow will restore this to `$HOME/.kube/config` and run `helm upgrade --install`.
+
+   Set the corresponding secret(s) to enable each deploy job. The CD workflow checks for presence of these secrets and runs the matching job.
 
 CI workflow (/.github/workflows/ci.yml)
 

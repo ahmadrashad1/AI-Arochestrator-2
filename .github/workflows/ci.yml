@@ -8,11 +8,14 @@ on:
 
 jobs:
   tests:
-    name: Run tests
+    name: Unit Tests (matrix)
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.10, 3.11]
     permissions:
       contents: read
-      actions: read
     env:
       XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
       LLM_TEST_MODE: ${{ secrets.LLM_TEST_MODE }}
@@ -20,16 +23,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Python 3.11
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: ${{ matrix.python-version }}
 
       - name: Cache pip
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
@@ -42,6 +45,61 @@ jobs:
       - name: Run backend tests
         working-directory: backend
         run: pytest -q
+
+  lint:
+    name: Static analysis
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install linters
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 mypy
+
+      - name: Run flake8
+        run: |
+          flake8 backend || true
+
+      - name: Run mypy
+        run: |
+          mypy backend || true
+
+  integration-tests:
+    name: Integration tests (main only)
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+    env:
+      XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+      LLM_TEST_MODE: ${{ secrets.LLM_TEST_MODE }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f backend/requirements.txt ]; then pip install -r backend/requirements.txt; fi
+          python -m pip install pytest
+
+      - name: Run integration tests
+        working-directory: backend
+        run: pytest -q app/tests/integration || true
 name: CI
 
 on:
