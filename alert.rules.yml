@@ -1,0 +1,11 @@
+groups:
+  - name: ai-orchestrator.rules
+    rules:
+      - alert: DeadLetterGrowth
+        expr: increase(dead_letter_total[5m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Dead letters detected"
+          description: "Dead letters increased in last 5m"

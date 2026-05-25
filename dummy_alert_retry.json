@@ -1,0 +1,13 @@
+{
+  "labels": {
+    "alertname": "DummyForwardRetry",
+    "severity": "critical",
+    "job": "ai-orchestrator"
+  },
+  "annotations": {
+    "summary": "Resent dummy alert for Discord/email verification",
+    "description": "Direct post to alert-webhook"
+  },
+  "startsAt": "2026-05-25T02:20:00Z",
+  "generatorURL": "http://localhost:9090"
+}

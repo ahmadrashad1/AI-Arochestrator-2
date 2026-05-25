@@ -1,0 +1,28 @@
+{
+  "execution_id": "execution_88b4aa7f7909",
+  "input_payload": {
+    "lead": "worker"
+  },
+  "llm_route": {
+    "fallbacks": [],
+    "model": "grok-2",
+    "provider": "none",
+    "tier": "standard"
+  },
+  "output_payload": {
+    "execution_id": "execution_88b4aa7f7909",
+    "input_payload": {
+      "lead": "worker"
+    },
+    "llm_route": {
+      "fallbacks": [],
+      "model": "grok-2",
+      "provider": "none",
+      "tier": "standard"
+    },
+    "status": "completed",
+    "summary": "Workflow workflow_069284f808db completed",
+    "workflow_id": "workflow_069284f808db"
+  },
+  "workflow_id": "workflow_069284f808db"
+}

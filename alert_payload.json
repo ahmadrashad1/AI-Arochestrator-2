@@ -1,0 +1,16 @@
+[
+  {
+    "labels": {
+      "alertname": "DummyForwardTest",
+      "severity": "critical",
+      "job": "ai-orchestrator"
+    },
+    "annotations": {
+      "summary": "Dummy alert for Discord/email verification",
+      "description": "Synthetic alert sent to Alertmanager"
+    },
+    "startsAt": "2026-05-24T21:07:25Z",
+    "endsAt": "2026-05-24T22:08:25Z",
+    "generatorURL": "http://localhost:9090"
+  }
+]

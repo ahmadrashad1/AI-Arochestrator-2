@@ -1,0 +1,38 @@
+{
+  "execution_id": "execution_e6f4cae94268",
+  "input_payload": {
+    "tool_request": {
+      "input_payload": {
+        "msg": "hi"
+      },
+      "tool_name": "echo"
+    }
+  },
+  "llm_route": {
+    "fallbacks": [],
+    "model": "grok-2",
+    "provider": "none",
+    "tier": "standard"
+  },
+  "output_payload": {
+    "execution_id": "execution_e6f4cae94268",
+    "input_payload": {
+      "tool_request": {
+        "input_payload": {
+          "msg": "hi"
+        },
+        "tool_name": "echo"
+      }
+    },
+    "llm_route": {
+      "fallbacks": [],
+      "model": "grok-2",
+      "provider": "none",
+      "tier": "standard"
+    },
+    "status": "completed",
+    "summary": "Workflow workflow_3f1a3e76596e completed",
+    "workflow_id": "workflow_3f1a3e76596e"
+  },
+  "workflow_id": "workflow_3f1a3e76596e"
+}

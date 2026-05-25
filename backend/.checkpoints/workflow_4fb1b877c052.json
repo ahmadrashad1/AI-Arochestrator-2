@@ -1,0 +1,26 @@
+{
+  "execution_id": "execution_9ea68cd48330",
+  "input_payload": {
+    "tool_request": {
+      "input_payload": {
+        "msg": "hi"
+      },
+      "tool_name": "echo"
+    }
+  },
+  "output_payload": {
+    "execution_id": "execution_9ea68cd48330",
+    "input_payload": {
+      "tool_request": {
+        "input_payload": {
+          "msg": "hi"
+        },
+        "tool_name": "echo"
+      }
+    },
+    "status": "completed",
+    "summary": "Workflow workflow_4fb1b877c052 completed",
+    "workflow_id": "workflow_4fb1b877c052"
+  },
+  "workflow_id": "workflow_4fb1b877c052"
+}

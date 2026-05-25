@@ -1,0 +1,16 @@
+{
+  "execution_id": "execution_bdf240efab3c",
+  "input_payload": {
+    "lead": "worker"
+  },
+  "output_payload": {
+    "execution_id": "execution_bdf240efab3c",
+    "input_payload": {
+      "lead": "worker"
+    },
+    "status": "completed",
+    "summary": "Workflow workflow_74e5d15ca23c completed",
+    "workflow_id": "workflow_74e5d15ca23c"
+  },
+  "workflow_id": "workflow_74e5d15ca23c"
+}

@@ -1,0 +1,16 @@
+{
+  "execution_id": "execution_82398d813195",
+  "input_payload": {
+    "lead": "worker"
+  },
+  "output_payload": {
+    "execution_id": "execution_82398d813195",
+    "input_payload": {
+      "lead": "worker"
+    },
+    "status": "completed",
+    "summary": "Workflow workflow_e7a71a3e2ed7 completed",
+    "workflow_id": "workflow_e7a71a3e2ed7"
+  },
+  "workflow_id": "workflow_e7a71a3e2ed7"
+}

@@ -1,0 +1,117 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ai_orchestrator
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  qdrant:
+    image: qdrant/qdrant:v1.12.6
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  app:
+    image: python:3.11-slim
+    working_dir: /workspace/backend
+    volumes:
+      - ./:/workspace
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      # use sqlite for local compose demo to avoid postgres driver dependency
+      - DATABASE_URL=sqlite:///./app_dev.db
+      - ALERTMANAGER_URL=http://alertmanager:9093
+      - PYTHONPATH=/workspace
+    command: ["bash", "-lc", "pip install -r requirements.txt && PYTHONPATH=/workspace uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+    ports:
+      - '8000:8000'
+    depends_on:
+      - redis
+      - postgres
+
+  celery:
+    image: python:3.11-slim
+    working_dir: /workspace/backend
+    volumes:
+      - ./:/workspace
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=sqlite:///./app_dev.db
+      - PYTHONPATH=/workspace
+    command: ["bash", "-lc", "pip install -r requirements.txt && PYTHONPATH=/workspace python -m celery -A app.workers.celery_worker worker --loglevel=info"]
+    depends_on:
+      - redis
+      - postgres
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./alert.rules.yml:/etc/prometheus/alert.rules.yml:ro
+    ports:
+      - '9090:9090'
+    depends_on:
+      - app
+      - alertmanager
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+    ports:
+      - '9093:9093'
+    environment:
+      - TZ=UTC
+    depends_on:
+      - alert-webhook
+
+  alert-webhook:
+    image: python:3.11-slim
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    environment:
+      - ALERT_WEBHOOK_DB_URL=sqlite:////workspace/data/alert_notifications.db
+      - ALERT_WEBHOOK_SLACK_URL=
+      - ALERT_WEBHOOK_DISCORD_URL=https://discord.com/api/webhooks/1508211454657171598/dCO29cKWCcQDi0kh_sduvUIDlbyOTjdkS5CpLzDGUe4svdgGZnJD7j1is4ZmBCMcZkJj
+      - ALERT_WEBHOOK_EMAIL_TO=ahmadrashadmojeeb@gmail.com
+      - ALERT_WEBHOOK_EMAIL_FROM=mojeebahmadrashad@gmail.com
+      - ALERT_WEBHOOK_SMTP_HOST=smtp.gmail.com
+      - ALERT_WEBHOOK_SMTP_PORT=587
+      - ALERT_WEBHOOK_SMTP_USERNAME=mojeebahmadrashad@gmail.com
+      - ALERT_WEBHOOK_SMTP_PASSWORD=TopaProMax321
+      - ALERT_WEBHOOK_SMTP_USE_TLS=true
+      - ALERTMANAGER_URL=http://alertmanager:9093
+    command: ["bash", "-lc", "pip install -r backend/requirements.txt && PYTHONPATH=/workspace python /workspace/docker/alert_webhook.py"]
+    ports:
+      - '5001:5001'
+
+  e2e-runner:
+    image: python:3.11-slim
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    environment:
+      - PYTHONPATH=/workspace/backend
+      - DATABASE_URL=sqlite:///./backend/app_dev.db
+      - REDIS_URL=redis://redis:6379/0
+    command: ["bash", "-lc", "pip install -r backend/requirements.txt && PYTHONPATH=/workspace/backend python backend/scripts/e2e_tool_workflow.py"]
+    depends_on:
+      - app
+      - redis
+
+volumes:
+  postgres_data:
+  qdrant_data:

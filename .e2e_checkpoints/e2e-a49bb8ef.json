@@ -1,0 +1,26 @@
+{
+  "execution_id": "exec-59edc562",
+  "input_payload": {
+    "tool_request": {
+      "input_payload": {
+        "hello": "world"
+      },
+      "tool_name": "echo"
+    }
+  },
+  "output_payload": {
+    "execution_id": "exec-59edc562",
+    "input_payload": {
+      "tool_request": {
+        "input_payload": {
+          "hello": "world"
+        },
+        "tool_name": "echo"
+      }
+    },
+    "status": "completed",
+    "summary": "Workflow e2e-a49bb8ef completed",
+    "workflow_id": "e2e-a49bb8ef"
+  },
+  "workflow_id": "e2e-a49bb8ef"
+}
