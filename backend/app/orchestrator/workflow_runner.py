@@ -6,6 +6,7 @@ from app.memory.short_term.checkpoint_store import CheckpointStore
 from app.orchestrator.event_bus import event_bus
 from app.llm.router import llm_router
 from app.graphs.graph_registry import graph_registry
+from app.workflows.config import resolve_workflow_config
 
 
 class WorkflowRunner:
@@ -27,6 +28,7 @@ class WorkflowRunner:
         existing_state: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
         route = llm_router.select_route(input_payload.get("llm_tier") if isinstance(input_payload, dict) else None)
+        workflow_config = resolve_workflow_config(workflow_definition or {}, input_payload)
         graph = graph_registry.resolve(workflow_definition or {}, input_payload)
         state = graph.run(
             existing_state
@@ -35,12 +37,26 @@ class WorkflowRunner:
                 "execution_id": execution_id,
                 "input_payload": input_payload,
                 "workflow_definition": workflow_definition or {},
+                "workflow_config": {
+                    "workflow_type": workflow_config.workflow_type,
+                    "graph_name": workflow_config.graph_name,
+                    "steps": list(workflow_config.steps),
+                    "tools": list(workflow_config.tools),
+                    "metadata": dict(workflow_config.metadata),
+                },
                 "llm_route": route.to_dict(),
             }
         )
         state.setdefault("workflow_id", workflow_id)
         state.setdefault("execution_id", execution_id)
         state.setdefault("llm_route", route.to_dict())
+        state.setdefault("workflow_config", {
+            "workflow_type": workflow_config.workflow_type,
+            "graph_name": workflow_config.graph_name,
+            "steps": list(workflow_config.steps),
+            "tools": list(workflow_config.tools),
+            "metadata": dict(workflow_config.metadata),
+        })
         state.setdefault("summary", f"Workflow {workflow_id} completed")
         return state
 
