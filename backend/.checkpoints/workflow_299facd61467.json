@@ -1,0 +1,388 @@
+{
+  "execution_id": "execution_00c4f20badb5",
+  "graph_state": {
+    "current_node": "validation",
+    "execution_id": "execution_00c4f20badb5",
+    "graph_name": "automation",
+    "history": [
+      {
+        "node": "planning",
+        "status": "running"
+      },
+      {
+        "node": "routing",
+        "status": "running"
+      },
+      {
+        "node": "validation",
+        "status": "running"
+      }
+    ],
+    "input_payload": {
+      "lead": "worker"
+    },
+    "llm_route": {
+      "fallbacks": [],
+      "model": "grok-2",
+      "provider": "none",
+      "tier": "standard"
+    },
+    "next_node": null,
+    "output_payload": {
+      "graph_name": "automation",
+      "status": "completed",
+      "trace": [
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "next_node",
+            "plan",
+            "status",
+            "trace",
+            "visited_nodes",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": "routing",
+          "node": "planning",
+          "status": "running"
+        },
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "next_node",
+            "plan",
+            "route_decision",
+            "status",
+            "trace",
+            "visited_nodes",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": "validation",
+          "node": "routing",
+          "status": "running"
+        },
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "next_node",
+            "plan",
+            "route_decision",
+            "status",
+            "trace",
+            "validation",
+            "visited_nodes",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": null,
+          "node": "validation",
+          "status": "completed"
+        }
+      ],
+      "visited_nodes": [
+        "planning",
+        "routing",
+        "validation"
+      ]
+    },
+    "plan": {
+      "graph_name": "lead_generation",
+      "lead_score": 40,
+      "model": "grok-2",
+      "next_action": "research_and_outreach",
+      "objective": "identify and contact promising leads",
+      "provider": "none",
+      "tier": "standard"
+    },
+    "route_decision": "validation",
+    "status": "completed",
+    "summary": "Workflow workflow_299facd61467 completed",
+    "trace": [
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "routing",
+        "node": "planning",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "route_decision",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "validation",
+        "node": "routing",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "route_decision",
+          "status",
+          "trace",
+          "validation",
+          "visited_nodes",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": null,
+        "node": "validation",
+        "status": "completed"
+      }
+    ],
+    "validation": {
+      "ok": true
+    },
+    "visited_nodes": [
+      "planning",
+      "routing",
+      "validation"
+    ],
+    "workflow_definition": {
+      "steps": []
+    },
+    "workflow_id": "workflow_299facd61467"
+  },
+  "input_payload": {
+    "lead": "worker"
+  },
+  "llm_route": {
+    "fallbacks": [],
+    "model": "grok-2",
+    "provider": "none",
+    "tier": "standard"
+  },
+  "output_payload": {
+    "current_node": "validation",
+    "execution_id": "execution_00c4f20badb5",
+    "graph_name": "automation",
+    "history": [
+      {
+        "node": "planning",
+        "status": "running"
+      },
+      {
+        "node": "routing",
+        "status": "running"
+      },
+      {
+        "node": "validation",
+        "status": "running"
+      }
+    ],
+    "input_payload": {
+      "lead": "worker"
+    },
+    "llm_route": {
+      "fallbacks": [],
+      "model": "grok-2",
+      "provider": "none",
+      "tier": "standard"
+    },
+    "next_node": null,
+    "output_payload": {
+      "graph_name": "automation",
+      "status": "completed",
+      "trace": [
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "next_node",
+            "plan",
+            "status",
+            "trace",
+            "visited_nodes",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": "routing",
+          "node": "planning",
+          "status": "running"
+        },
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "next_node",
+            "plan",
+            "route_decision",
+            "status",
+            "trace",
+            "visited_nodes",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": "validation",
+          "node": "routing",
+          "status": "running"
+        },
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "next_node",
+            "plan",
+            "route_decision",
+            "status",
+            "trace",
+            "validation",
+            "visited_nodes",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": null,
+          "node": "validation",
+          "status": "completed"
+        }
+      ],
+      "visited_nodes": [
+        "planning",
+        "routing",
+        "validation"
+      ]
+    },
+    "plan": {
+      "graph_name": "lead_generation",
+      "lead_score": 40,
+      "model": "grok-2",
+      "next_action": "research_and_outreach",
+      "objective": "identify and contact promising leads",
+      "provider": "none",
+      "tier": "standard"
+    },
+    "route_decision": "validation",
+    "status": "completed",
+    "summary": "Workflow workflow_299facd61467 completed",
+    "trace": [
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "routing",
+        "node": "planning",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "route_decision",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "validation",
+        "node": "routing",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "route_decision",
+          "status",
+          "trace",
+          "validation",
+          "visited_nodes",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": null,
+        "node": "validation",
+        "status": "completed"
+      }
+    ],
+    "validation": {
+      "ok": true
+    },
+    "visited_nodes": [
+      "planning",
+      "routing",
+      "validation"
+    ],
+    "workflow_definition": {
+      "steps": []
+    },
+    "workflow_id": "workflow_299facd61467"
+  },
+  "workflow_definition": {
+    "steps": []
+  },
+  "workflow_id": "workflow_299facd61467"
+}

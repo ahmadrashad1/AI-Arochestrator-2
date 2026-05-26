@@ -1,0 +1,325 @@
+{
+  "execution_id": "execution_324a32a6b440",
+  "graph_state": {
+    "current_node": "tool_execution",
+    "execution_id": "execution_324a32a6b440",
+    "graph_name": "automation",
+    "history": [
+      {
+        "node": "planning",
+        "status": "running"
+      },
+      {
+        "node": "routing",
+        "status": "running"
+      },
+      {
+        "node": "tool_execution",
+        "status": "running"
+      }
+    ],
+    "input_payload": {
+      "tool_request": {
+        "input_payload": {
+          "msg": "hi"
+        },
+        "tool_name": "echo"
+      }
+    },
+    "llm_route": {
+      "fallbacks": [],
+      "model": "grok-2",
+      "provider": "none",
+      "tier": "standard"
+    },
+    "next_node": null,
+    "output_payload": {
+      "execution_id": "execution_324a32a6b440",
+      "llm_route": {
+        "fallbacks": [],
+        "model": "grok-2",
+        "provider": "none",
+        "tier": "standard"
+      },
+      "status": "completed",
+      "tool_name": "echo",
+      "tool_result": {
+        "received": {
+          "msg": "hi"
+        },
+        "tool": "echo"
+      },
+      "workflow_id": "workflow_f5ad2a8a4449"
+    },
+    "plan": {
+      "graph_name": "lead_generation",
+      "lead_score": 40,
+      "model": "grok-2",
+      "next_action": "research_and_outreach",
+      "objective": "identify and contact promising leads",
+      "provider": "none",
+      "tier": "standard"
+    },
+    "route_decision": "tool_execution",
+    "status": "completed",
+    "summary": "Workflow workflow_f5ad2a8a4449 completed",
+    "tool_result": {
+      "received": {
+        "msg": "hi"
+      },
+      "tool": "echo"
+    },
+    "trace": [
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "routing",
+        "node": "planning",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "route_decision",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "tool_execution",
+        "node": "routing",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "output_payload",
+          "plan",
+          "route_decision",
+          "status",
+          "tool_result",
+          "trace",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": null,
+        "node": "tool_execution",
+        "status": "completed"
+      }
+    ],
+    "visited_nodes": [
+      "planning",
+      "routing",
+      "tool_execution"
+    ],
+    "workflow_config": {
+      "graph_name": null,
+      "metadata": {},
+      "steps": [],
+      "tools": [],
+      "workflow_type": "automation"
+    },
+    "workflow_definition": {
+      "steps": []
+    },
+    "workflow_id": "workflow_f5ad2a8a4449"
+  },
+  "input_payload": {
+    "tool_request": {
+      "input_payload": {
+        "msg": "hi"
+      },
+      "tool_name": "echo"
+    }
+  },
+  "llm_route": {
+    "fallbacks": [],
+    "model": "grok-2",
+    "provider": "none",
+    "tier": "standard"
+  },
+  "output_payload": {
+    "current_node": "tool_execution",
+    "execution_id": "execution_324a32a6b440",
+    "graph_name": "automation",
+    "history": [
+      {
+        "node": "planning",
+        "status": "running"
+      },
+      {
+        "node": "routing",
+        "status": "running"
+      },
+      {
+        "node": "tool_execution",
+        "status": "running"
+      }
+    ],
+    "input_payload": {
+      "tool_request": {
+        "input_payload": {
+          "msg": "hi"
+        },
+        "tool_name": "echo"
+      }
+    },
+    "llm_route": {
+      "fallbacks": [],
+      "model": "grok-2",
+      "provider": "none",
+      "tier": "standard"
+    },
+    "next_node": null,
+    "output_payload": {
+      "execution_id": "execution_324a32a6b440",
+      "llm_route": {
+        "fallbacks": [],
+        "model": "grok-2",
+        "provider": "none",
+        "tier": "standard"
+      },
+      "status": "completed",
+      "tool_name": "echo",
+      "tool_result": {
+        "received": {
+          "msg": "hi"
+        },
+        "tool": "echo"
+      },
+      "workflow_id": "workflow_f5ad2a8a4449"
+    },
+    "plan": {
+      "graph_name": "lead_generation",
+      "lead_score": 40,
+      "model": "grok-2",
+      "next_action": "research_and_outreach",
+      "objective": "identify and contact promising leads",
+      "provider": "none",
+      "tier": "standard"
+    },
+    "route_decision": "tool_execution",
+    "status": "completed",
+    "summary": "Workflow workflow_f5ad2a8a4449 completed",
+    "tool_result": {
+      "received": {
+        "msg": "hi"
+      },
+      "tool": "echo"
+    },
+    "trace": [
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "routing",
+        "node": "planning",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "route_decision",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "tool_execution",
+        "node": "routing",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "output_payload",
+          "plan",
+          "route_decision",
+          "status",
+          "tool_result",
+          "trace",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": null,
+        "node": "tool_execution",
+        "status": "completed"
+      }
+    ],
+    "visited_nodes": [
+      "planning",
+      "routing",
+      "tool_execution"
+    ],
+    "workflow_config": {
+      "graph_name": null,
+      "metadata": {},
+      "steps": [],
+      "tools": [],
+      "workflow_type": "automation"
+    },
+    "workflow_definition": {
+      "steps": []
+    },
+    "workflow_id": "workflow_f5ad2a8a4449"
+  },
+  "workflow_definition": {
+    "steps": []
+  },
+  "workflow_id": "workflow_f5ad2a8a4449"
+}

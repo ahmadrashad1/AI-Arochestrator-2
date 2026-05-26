@@ -1,0 +1,1764 @@
+{
+  "execution_id": "execution_3a6838a41582",
+  "graph_state": {
+    "crm_result": {
+      "airtable": {
+        "payload": {
+          "lead": {
+            "company": "Acme Labs",
+            "email": "taylor@example.com",
+            "goal": "identify and contact qualified leads",
+            "graph_name": "lead_generation",
+            "prospect_name": "Taylor",
+            "research_query": "Acme Labs B2B growth",
+            "website": "https://example.com/acme"
+          },
+          "plan": {
+            "graph_name": "lead_generation",
+            "lead_score": 85,
+            "model": "grok-2",
+            "next_action": "research_and_outreach",
+            "objective": "identify and contact qualified leads",
+            "provider": "none",
+            "tier": "standard"
+          }
+        },
+        "tool": "productivity.airtable",
+        "updated": true
+      },
+      "hubspot": {
+        "payload": {
+          "lead": {
+            "company": "Acme Labs",
+            "email": "taylor@example.com",
+            "goal": "identify and contact qualified leads",
+            "graph_name": "lead_generation",
+            "prospect_name": "Taylor",
+            "research_query": "Acme Labs B2B growth",
+            "website": "https://example.com/acme"
+          },
+          "plan": {
+            "graph_name": "lead_generation",
+            "lead_score": 85,
+            "model": "grok-2",
+            "next_action": "research_and_outreach",
+            "objective": "identify and contact qualified leads",
+            "provider": "none",
+            "tier": "standard"
+          },
+          "research": {
+            "company": "Acme Labs",
+            "query": "Acme Labs B2B growth",
+            "scraped_page": {
+              "content": "Scraped content from https://example.com/acme",
+              "tool": "browser.scraper",
+              "url": "https://example.com/acme"
+            },
+            "search_results": {
+              "query": "Acme Labs B2B growth",
+              "results": [
+                {
+                  "title": "Acme Labs B2B growth overview",
+                  "url": "https://example.com/acme-labs-b2b-growth"
+                },
+                {
+                  "title": "Acme Labs B2B growth pricing",
+                  "url": "https://example.com/acme-labs-b2b-growth/pricing"
+                }
+              ],
+              "tool": "browser.search"
+            },
+            "summary": "Collected context for Acme Labs B2B growth"
+          }
+        },
+        "synced": true,
+        "tool": "crm.hubspot"
+      },
+      "notion": {
+        "payload": {
+          "lead": {
+            "company": "Acme Labs",
+            "email": "taylor@example.com",
+            "goal": "identify and contact qualified leads",
+            "graph_name": "lead_generation",
+            "prospect_name": "Taylor",
+            "research_query": "Acme Labs B2B growth",
+            "website": "https://example.com/acme"
+          },
+          "plan": {
+            "graph_name": "lead_generation",
+            "lead_score": 85,
+            "model": "grok-2",
+            "next_action": "research_and_outreach",
+            "objective": "identify and contact qualified leads",
+            "provider": "none",
+            "tier": "standard"
+          }
+        },
+        "tool": "productivity.notion",
+        "updated": true
+      },
+      "salesforce": {
+        "payload": {
+          "lead": {
+            "company": "Acme Labs",
+            "email": "taylor@example.com",
+            "goal": "identify and contact qualified leads",
+            "graph_name": "lead_generation",
+            "prospect_name": "Taylor",
+            "research_query": "Acme Labs B2B growth",
+            "website": "https://example.com/acme"
+          },
+          "plan": {
+            "graph_name": "lead_generation",
+            "lead_score": 85,
+            "model": "grok-2",
+            "next_action": "research_and_outreach",
+            "objective": "identify and contact qualified leads",
+            "provider": "none",
+            "tier": "standard"
+          },
+          "research": {
+            "company": "Acme Labs",
+            "query": "Acme Labs B2B growth",
+            "scraped_page": {
+              "content": "Scraped content from https://example.com/acme",
+              "tool": "browser.scraper",
+              "url": "https://example.com/acme"
+            },
+            "search_results": {
+              "query": "Acme Labs B2B growth",
+              "results": [
+                {
+                  "title": "Acme Labs B2B growth overview",
+                  "url": "https://example.com/acme-labs-b2b-growth"
+                },
+                {
+                  "title": "Acme Labs B2B growth pricing",
+                  "url": "https://example.com/acme-labs-b2b-growth/pricing"
+                }
+              ],
+              "tool": "browser.search"
+            },
+            "summary": "Collected context for Acme Labs B2B growth"
+          }
+        },
+        "synced": true,
+        "tool": "crm.salesforce"
+      },
+      "sheets": {
+        "payload": {
+          "lead": {
+            "company": "Acme Labs",
+            "email": "taylor@example.com",
+            "goal": "identify and contact qualified leads",
+            "graph_name": "lead_generation",
+            "prospect_name": "Taylor",
+            "research_query": "Acme Labs B2B growth",
+            "website": "https://example.com/acme"
+          },
+          "plan": {
+            "graph_name": "lead_generation",
+            "lead_score": 85,
+            "model": "grok-2",
+            "next_action": "research_and_outreach",
+            "objective": "identify and contact qualified leads",
+            "provider": "none",
+            "tier": "standard"
+          }
+        },
+        "tool": "productivity.sheets",
+        "updated": true
+      }
+    },
+    "current_node": "tool_execution",
+    "email_result": {
+      "body": "Hi Taylor,\n\nI reviewed Acme Labs and put together a short note based on identify and contact qualified leads. Your lead score is 85 out of 100, which makes this a good fit for outreach.\n\nIf you\u2019d like, I can share the rest of the workflow details.",
+      "status": "queued",
+      "subject": "Identify And Contact Qualified Leads for Acme Labs",
+      "to": "taylor@example.com",
+      "tool": "communication.gmail"
+    },
+    "execution_id": "execution_3a6838a41582",
+    "graph_name": "lead_generation",
+    "history": [
+      {
+        "node": "planning",
+        "status": "running"
+      },
+      {
+        "node": "routing",
+        "status": "running"
+      },
+      {
+        "node": "retrieval",
+        "status": "running"
+      },
+      {
+        "node": "memory",
+        "status": "running"
+      },
+      {
+        "node": "validation",
+        "status": "running"
+      },
+      {
+        "node": "tool_execution",
+        "status": "running"
+      }
+    ],
+    "input_payload": {
+      "company": "Acme Labs",
+      "email": "taylor@example.com",
+      "goal": "identify and contact qualified leads",
+      "graph_name": "lead_generation",
+      "prospect_name": "Taylor",
+      "research_query": "Acme Labs B2B growth",
+      "website": "https://example.com/acme"
+    },
+    "lead_score": 85,
+    "llm_route": {
+      "fallbacks": [],
+      "model": "grok-2",
+      "provider": "none",
+      "tier": "standard"
+    },
+    "memory": [
+      {
+        "content": {
+          "company": "Acme Labs",
+          "query": "Acme Labs B2B growth",
+          "scraped_page": {
+            "content": "Scraped content from https://example.com/acme",
+            "tool": "browser.scraper",
+            "url": "https://example.com/acme"
+          },
+          "search_results": {
+            "query": "Acme Labs B2B growth",
+            "results": [
+              {
+                "title": "Acme Labs B2B growth overview",
+                "url": "https://example.com/acme-labs-b2b-growth"
+              },
+              {
+                "title": "Acme Labs B2B growth pricing",
+                "url": "https://example.com/acme-labs-b2b-growth/pricing"
+              }
+            ],
+            "tool": "browser.search"
+          },
+          "summary": "Collected context for Acme Labs B2B growth"
+        },
+        "step": "memory"
+      }
+    ],
+    "next_node": null,
+    "output_payload": {
+      "crm_result": {
+        "airtable": {
+          "payload": {
+            "lead": {
+              "company": "Acme Labs",
+              "email": "taylor@example.com",
+              "goal": "identify and contact qualified leads",
+              "graph_name": "lead_generation",
+              "prospect_name": "Taylor",
+              "research_query": "Acme Labs B2B growth",
+              "website": "https://example.com/acme"
+            },
+            "plan": {
+              "graph_name": "lead_generation",
+              "lead_score": 85,
+              "model": "grok-2",
+              "next_action": "research_and_outreach",
+              "objective": "identify and contact qualified leads",
+              "provider": "none",
+              "tier": "standard"
+            }
+          },
+          "tool": "productivity.airtable",
+          "updated": true
+        },
+        "hubspot": {
+          "payload": {
+            "lead": {
+              "company": "Acme Labs",
+              "email": "taylor@example.com",
+              "goal": "identify and contact qualified leads",
+              "graph_name": "lead_generation",
+              "prospect_name": "Taylor",
+              "research_query": "Acme Labs B2B growth",
+              "website": "https://example.com/acme"
+            },
+            "plan": {
+              "graph_name": "lead_generation",
+              "lead_score": 85,
+              "model": "grok-2",
+              "next_action": "research_and_outreach",
+              "objective": "identify and contact qualified leads",
+              "provider": "none",
+              "tier": "standard"
+            },
+            "research": {
+              "company": "Acme Labs",
+              "query": "Acme Labs B2B growth",
+              "scraped_page": {
+                "content": "Scraped content from https://example.com/acme",
+                "tool": "browser.scraper",
+                "url": "https://example.com/acme"
+              },
+              "search_results": {
+                "query": "Acme Labs B2B growth",
+                "results": [
+                  {
+                    "title": "Acme Labs B2B growth overview",
+                    "url": "https://example.com/acme-labs-b2b-growth"
+                  },
+                  {
+                    "title": "Acme Labs B2B growth pricing",
+                    "url": "https://example.com/acme-labs-b2b-growth/pricing"
+                  }
+                ],
+                "tool": "browser.search"
+              },
+              "summary": "Collected context for Acme Labs B2B growth"
+            }
+          },
+          "synced": true,
+          "tool": "crm.hubspot"
+        },
+        "notion": {
+          "payload": {
+            "lead": {
+              "company": "Acme Labs",
+              "email": "taylor@example.com",
+              "goal": "identify and contact qualified leads",
+              "graph_name": "lead_generation",
+              "prospect_name": "Taylor",
+              "research_query": "Acme Labs B2B growth",
+              "website": "https://example.com/acme"
+            },
+            "plan": {
+              "graph_name": "lead_generation",
+              "lead_score": 85,
+              "model": "grok-2",
+              "next_action": "research_and_outreach",
+              "objective": "identify and contact qualified leads",
+              "provider": "none",
+              "tier": "standard"
+            }
+          },
+          "tool": "productivity.notion",
+          "updated": true
+        },
+        "salesforce": {
+          "payload": {
+            "lead": {
+              "company": "Acme Labs",
+              "email": "taylor@example.com",
+              "goal": "identify and contact qualified leads",
+              "graph_name": "lead_generation",
+              "prospect_name": "Taylor",
+              "research_query": "Acme Labs B2B growth",
+              "website": "https://example.com/acme"
+            },
+            "plan": {
+              "graph_name": "lead_generation",
+              "lead_score": 85,
+              "model": "grok-2",
+              "next_action": "research_and_outreach",
+              "objective": "identify and contact qualified leads",
+              "provider": "none",
+              "tier": "standard"
+            },
+            "research": {
+              "company": "Acme Labs",
+              "query": "Acme Labs B2B growth",
+              "scraped_page": {
+                "content": "Scraped content from https://example.com/acme",
+                "tool": "browser.scraper",
+                "url": "https://example.com/acme"
+              },
+              "search_results": {
+                "query": "Acme Labs B2B growth",
+                "results": [
+                  {
+                    "title": "Acme Labs B2B growth overview",
+                    "url": "https://example.com/acme-labs-b2b-growth"
+                  },
+                  {
+                    "title": "Acme Labs B2B growth pricing",
+                    "url": "https://example.com/acme-labs-b2b-growth/pricing"
+                  }
+                ],
+                "tool": "browser.search"
+              },
+              "summary": "Collected context for Acme Labs B2B growth"
+            }
+          },
+          "synced": true,
+          "tool": "crm.salesforce"
+        },
+        "sheets": {
+          "payload": {
+            "lead": {
+              "company": "Acme Labs",
+              "email": "taylor@example.com",
+              "goal": "identify and contact qualified leads",
+              "graph_name": "lead_generation",
+              "prospect_name": "Taylor",
+              "research_query": "Acme Labs B2B growth",
+              "website": "https://example.com/acme"
+            },
+            "plan": {
+              "graph_name": "lead_generation",
+              "lead_score": 85,
+              "model": "grok-2",
+              "next_action": "research_and_outreach",
+              "objective": "identify and contact qualified leads",
+              "provider": "none",
+              "tier": "standard"
+            }
+          },
+          "tool": "productivity.sheets",
+          "updated": true
+        }
+      },
+      "email_result": {
+        "body": "Hi Taylor,\n\nI reviewed Acme Labs and put together a short note based on identify and contact qualified leads. Your lead score is 85 out of 100, which makes this a good fit for outreach.\n\nIf you\u2019d like, I can share the rest of the workflow details.",
+        "status": "queued",
+        "subject": "Identify And Contact Qualified Leads for Acme Labs",
+        "to": "taylor@example.com",
+        "tool": "communication.gmail"
+      },
+      "execution_id": "execution_3a6838a41582",
+      "lead_score": 85,
+      "llm_route": {
+        "fallbacks": [],
+        "model": "grok-2",
+        "provider": "none",
+        "tier": "standard"
+      },
+      "personalization": "Hi Taylor,\n\nI reviewed Acme Labs and put together a short note based on identify and contact qualified leads. Your lead score is 85 out of 100, which makes this a good fit for outreach.\n\nIf you\u2019d like, I can share the rest of the workflow details.",
+      "plan": {
+        "graph_name": "lead_generation",
+        "lead_score": 85,
+        "model": "grok-2",
+        "next_action": "research_and_outreach",
+        "objective": "identify and contact qualified leads",
+        "provider": "none",
+        "tier": "standard"
+      },
+      "research": {
+        "company": "Acme Labs",
+        "query": "Acme Labs B2B growth",
+        "scraped_page": {
+          "content": "Scraped content from https://example.com/acme",
+          "tool": "browser.scraper",
+          "url": "https://example.com/acme"
+        },
+        "search_results": {
+          "query": "Acme Labs B2B growth",
+          "results": [
+            {
+              "title": "Acme Labs B2B growth overview",
+              "url": "https://example.com/acme-labs-b2b-growth"
+            },
+            {
+              "title": "Acme Labs B2B growth pricing",
+              "url": "https://example.com/acme-labs-b2b-growth/pricing"
+            }
+          ],
+          "tool": "browser.search"
+        },
+        "summary": "Collected context for Acme Labs B2B growth"
+      },
+      "status": "completed",
+      "summary": "Prepared outreach for Acme Labs",
+      "trace": [
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "next_node",
+            "plan",
+            "status",
+            "trace",
+            "visited_nodes",
+            "workflow_config",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": "routing",
+          "node": "planning",
+          "status": "running"
+        },
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "next_node",
+            "plan",
+            "route_decision",
+            "status",
+            "trace",
+            "visited_nodes",
+            "workflow_config",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": "retrieval",
+          "node": "routing",
+          "status": "running"
+        },
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "next_node",
+            "plan",
+            "retrieved_context",
+            "route_decision",
+            "status",
+            "trace",
+            "visited_nodes",
+            "workflow_config",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": "memory",
+          "node": "retrieval",
+          "status": "running"
+        },
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "memory",
+            "next_node",
+            "plan",
+            "retrieved_context",
+            "route_decision",
+            "status",
+            "trace",
+            "visited_nodes",
+            "workflow_config",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": "validation",
+          "node": "memory",
+          "status": "running"
+        },
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "memory",
+            "next_node",
+            "plan",
+            "retrieved_context",
+            "route_decision",
+            "status",
+            "trace",
+            "validation",
+            "visited_nodes",
+            "workflow_config",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": "tool_execution",
+          "node": "validation",
+          "status": "running"
+        },
+        {
+          "email": {
+            "body": "Hi Taylor,\n\nI reviewed Acme Labs and put together a short note based on identify and contact qualified leads. Your lead score is 85 out of 100, which makes this a good fit for outreach.\n\nIf you\u2019d like, I can share the rest of the workflow details.",
+            "status": "queued",
+            "subject": "Identify And Contact Qualified Leads for Acme Labs",
+            "to": "taylor@example.com",
+            "tool": "communication.gmail"
+          },
+          "plan": {
+            "graph_name": "lead_generation",
+            "lead_score": 85,
+            "model": "grok-2",
+            "next_action": "research_and_outreach",
+            "objective": "identify and contact qualified leads",
+            "provider": "none",
+            "tier": "standard"
+          },
+          "research": {
+            "company": "Acme Labs",
+            "query": "Acme Labs B2B growth",
+            "scraped_page": {
+              "content": "Scraped content from https://example.com/acme",
+              "tool": "browser.scraper",
+              "url": "https://example.com/acme"
+            },
+            "search_results": {
+              "query": "Acme Labs B2B growth",
+              "results": [
+                {
+                  "title": "Acme Labs B2B growth overview",
+                  "url": "https://example.com/acme-labs-b2b-growth"
+                },
+                {
+                  "title": "Acme Labs B2B growth pricing",
+                  "url": "https://example.com/acme-labs-b2b-growth/pricing"
+                }
+              ],
+              "tool": "browser.search"
+            },
+            "summary": "Collected context for Acme Labs B2B growth"
+          },
+          "stage": "lead_generation"
+        }
+      ],
+      "workflow_id": "workflow_a824db1f3768"
+    },
+    "personalization": "Hi Taylor,\n\nI reviewed Acme Labs and put together a short note based on identify and contact qualified leads. Your lead score is 85 out of 100, which makes this a good fit for outreach.\n\nIf you\u2019d like, I can share the rest of the workflow details.",
+    "plan": {
+      "graph_name": "lead_generation",
+      "lead_score": 85,
+      "model": "grok-2",
+      "next_action": "research_and_outreach",
+      "objective": "identify and contact qualified leads",
+      "provider": "none",
+      "tier": "standard"
+    },
+    "research": {
+      "company": "Acme Labs",
+      "query": "Acme Labs B2B growth",
+      "scraped_page": {
+        "content": "Scraped content from https://example.com/acme",
+        "tool": "browser.scraper",
+        "url": "https://example.com/acme"
+      },
+      "search_results": {
+        "query": "Acme Labs B2B growth",
+        "results": [
+          {
+            "title": "Acme Labs B2B growth overview",
+            "url": "https://example.com/acme-labs-b2b-growth"
+          },
+          {
+            "title": "Acme Labs B2B growth pricing",
+            "url": "https://example.com/acme-labs-b2b-growth/pricing"
+          }
+        ],
+        "tool": "browser.search"
+      },
+      "summary": "Collected context for Acme Labs B2B growth"
+    },
+    "retrieved_context": {
+      "company": "Acme Labs",
+      "query": "Acme Labs B2B growth",
+      "scraped_page": {
+        "content": "Scraped content from https://example.com/acme",
+        "tool": "browser.scraper",
+        "url": "https://example.com/acme"
+      },
+      "search_results": {
+        "query": "Acme Labs B2B growth",
+        "results": [
+          {
+            "title": "Acme Labs B2B growth overview",
+            "url": "https://example.com/acme-labs-b2b-growth"
+          },
+          {
+            "title": "Acme Labs B2B growth pricing",
+            "url": "https://example.com/acme-labs-b2b-growth/pricing"
+          }
+        ],
+        "tool": "browser.search"
+      },
+      "summary": "Collected context for Acme Labs B2B growth"
+    },
+    "route_decision": "retrieval",
+    "status": "completed",
+    "summary": "Workflow workflow_a824db1f3768 completed",
+    "trace": [
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "routing",
+        "node": "planning",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "route_decision",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "retrieval",
+        "node": "routing",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "retrieved_context",
+          "route_decision",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "memory",
+        "node": "retrieval",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "memory",
+          "next_node",
+          "plan",
+          "retrieved_context",
+          "route_decision",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "validation",
+        "node": "memory",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "memory",
+          "next_node",
+          "plan",
+          "retrieved_context",
+          "route_decision",
+          "status",
+          "trace",
+          "validation",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "tool_execution",
+        "node": "validation",
+        "status": "running"
+      },
+      {
+        "email": {
+          "body": "Hi Taylor,\n\nI reviewed Acme Labs and put together a short note based on identify and contact qualified leads. Your lead score is 85 out of 100, which makes this a good fit for outreach.\n\nIf you\u2019d like, I can share the rest of the workflow details.",
+          "status": "queued",
+          "subject": "Identify And Contact Qualified Leads for Acme Labs",
+          "to": "taylor@example.com",
+          "tool": "communication.gmail"
+        },
+        "plan": {
+          "graph_name": "lead_generation",
+          "lead_score": 85,
+          "model": "grok-2",
+          "next_action": "research_and_outreach",
+          "objective": "identify and contact qualified leads",
+          "provider": "none",
+          "tier": "standard"
+        },
+        "research": {
+          "company": "Acme Labs",
+          "query": "Acme Labs B2B growth",
+          "scraped_page": {
+            "content": "Scraped content from https://example.com/acme",
+            "tool": "browser.scraper",
+            "url": "https://example.com/acme"
+          },
+          "search_results": {
+            "query": "Acme Labs B2B growth",
+            "results": [
+              {
+                "title": "Acme Labs B2B growth overview",
+                "url": "https://example.com/acme-labs-b2b-growth"
+              },
+              {
+                "title": "Acme Labs B2B growth pricing",
+                "url": "https://example.com/acme-labs-b2b-growth/pricing"
+              }
+            ],
+            "tool": "browser.search"
+          },
+          "summary": "Collected context for Acme Labs B2B growth"
+        },
+        "stage": "lead_generation"
+      }
+    ],
+    "validation": {
+      "ok": true
+    },
+    "visited_nodes": [
+      "planning",
+      "routing",
+      "retrieval",
+      "memory",
+      "validation",
+      "tool_execution"
+    ],
+    "workflow_config": {
+      "graph_name": "lead_generation",
+      "metadata": {},
+      "steps": [],
+      "tools": [],
+      "workflow_type": "automation"
+    },
+    "workflow_definition": {
+      "graph_name": "lead_generation"
+    },
+    "workflow_id": "workflow_a824db1f3768"
+  },
+  "input_payload": {
+    "company": "Acme Labs",
+    "email": "taylor@example.com",
+    "goal": "identify and contact qualified leads",
+    "graph_name": "lead_generation",
+    "prospect_name": "Taylor",
+    "research_query": "Acme Labs B2B growth",
+    "website": "https://example.com/acme"
+  },
+  "llm_route": {
+    "fallbacks": [],
+    "model": "grok-2",
+    "provider": "none",
+    "tier": "standard"
+  },
+  "output_payload": {
+    "crm_result": {
+      "airtable": {
+        "payload": {
+          "lead": {
+            "company": "Acme Labs",
+            "email": "taylor@example.com",
+            "goal": "identify and contact qualified leads",
+            "graph_name": "lead_generation",
+            "prospect_name": "Taylor",
+            "research_query": "Acme Labs B2B growth",
+            "website": "https://example.com/acme"
+          },
+          "plan": {
+            "graph_name": "lead_generation",
+            "lead_score": 85,
+            "model": "grok-2",
+            "next_action": "research_and_outreach",
+            "objective": "identify and contact qualified leads",
+            "provider": "none",
+            "tier": "standard"
+          }
+        },
+        "tool": "productivity.airtable",
+        "updated": true
+      },
+      "hubspot": {
+        "payload": {
+          "lead": {
+            "company": "Acme Labs",
+            "email": "taylor@example.com",
+            "goal": "identify and contact qualified leads",
+            "graph_name": "lead_generation",
+            "prospect_name": "Taylor",
+            "research_query": "Acme Labs B2B growth",
+            "website": "https://example.com/acme"
+          },
+          "plan": {
+            "graph_name": "lead_generation",
+            "lead_score": 85,
+            "model": "grok-2",
+            "next_action": "research_and_outreach",
+            "objective": "identify and contact qualified leads",
+            "provider": "none",
+            "tier": "standard"
+          },
+          "research": {
+            "company": "Acme Labs",
+            "query": "Acme Labs B2B growth",
+            "scraped_page": {
+              "content": "Scraped content from https://example.com/acme",
+              "tool": "browser.scraper",
+              "url": "https://example.com/acme"
+            },
+            "search_results": {
+              "query": "Acme Labs B2B growth",
+              "results": [
+                {
+                  "title": "Acme Labs B2B growth overview",
+                  "url": "https://example.com/acme-labs-b2b-growth"
+                },
+                {
+                  "title": "Acme Labs B2B growth pricing",
+                  "url": "https://example.com/acme-labs-b2b-growth/pricing"
+                }
+              ],
+              "tool": "browser.search"
+            },
+            "summary": "Collected context for Acme Labs B2B growth"
+          }
+        },
+        "synced": true,
+        "tool": "crm.hubspot"
+      },
+      "notion": {
+        "payload": {
+          "lead": {
+            "company": "Acme Labs",
+            "email": "taylor@example.com",
+            "goal": "identify and contact qualified leads",
+            "graph_name": "lead_generation",
+            "prospect_name": "Taylor",
+            "research_query": "Acme Labs B2B growth",
+            "website": "https://example.com/acme"
+          },
+          "plan": {
+            "graph_name": "lead_generation",
+            "lead_score": 85,
+            "model": "grok-2",
+            "next_action": "research_and_outreach",
+            "objective": "identify and contact qualified leads",
+            "provider": "none",
+            "tier": "standard"
+          }
+        },
+        "tool": "productivity.notion",
+        "updated": true
+      },
+      "salesforce": {
+        "payload": {
+          "lead": {
+            "company": "Acme Labs",
+            "email": "taylor@example.com",
+            "goal": "identify and contact qualified leads",
+            "graph_name": "lead_generation",
+            "prospect_name": "Taylor",
+            "research_query": "Acme Labs B2B growth",
+            "website": "https://example.com/acme"
+          },
+          "plan": {
+            "graph_name": "lead_generation",
+            "lead_score": 85,
+            "model": "grok-2",
+            "next_action": "research_and_outreach",
+            "objective": "identify and contact qualified leads",
+            "provider": "none",
+            "tier": "standard"
+          },
+          "research": {
+            "company": "Acme Labs",
+            "query": "Acme Labs B2B growth",
+            "scraped_page": {
+              "content": "Scraped content from https://example.com/acme",
+              "tool": "browser.scraper",
+              "url": "https://example.com/acme"
+            },
+            "search_results": {
+              "query": "Acme Labs B2B growth",
+              "results": [
+                {
+                  "title": "Acme Labs B2B growth overview",
+                  "url": "https://example.com/acme-labs-b2b-growth"
+                },
+                {
+                  "title": "Acme Labs B2B growth pricing",
+                  "url": "https://example.com/acme-labs-b2b-growth/pricing"
+                }
+              ],
+              "tool": "browser.search"
+            },
+            "summary": "Collected context for Acme Labs B2B growth"
+          }
+        },
+        "synced": true,
+        "tool": "crm.salesforce"
+      },
+      "sheets": {
+        "payload": {
+          "lead": {
+            "company": "Acme Labs",
+            "email": "taylor@example.com",
+            "goal": "identify and contact qualified leads",
+            "graph_name": "lead_generation",
+            "prospect_name": "Taylor",
+            "research_query": "Acme Labs B2B growth",
+            "website": "https://example.com/acme"
+          },
+          "plan": {
+            "graph_name": "lead_generation",
+            "lead_score": 85,
+            "model": "grok-2",
+            "next_action": "research_and_outreach",
+            "objective": "identify and contact qualified leads",
+            "provider": "none",
+            "tier": "standard"
+          }
+        },
+        "tool": "productivity.sheets",
+        "updated": true
+      }
+    },
+    "current_node": "tool_execution",
+    "email_result": {
+      "body": "Hi Taylor,\n\nI reviewed Acme Labs and put together a short note based on identify and contact qualified leads. Your lead score is 85 out of 100, which makes this a good fit for outreach.\n\nIf you\u2019d like, I can share the rest of the workflow details.",
+      "status": "queued",
+      "subject": "Identify And Contact Qualified Leads for Acme Labs",
+      "to": "taylor@example.com",
+      "tool": "communication.gmail"
+    },
+    "execution_id": "execution_3a6838a41582",
+    "graph_name": "lead_generation",
+    "history": [
+      {
+        "node": "planning",
+        "status": "running"
+      },
+      {
+        "node": "routing",
+        "status": "running"
+      },
+      {
+        "node": "retrieval",
+        "status": "running"
+      },
+      {
+        "node": "memory",
+        "status": "running"
+      },
+      {
+        "node": "validation",
+        "status": "running"
+      },
+      {
+        "node": "tool_execution",
+        "status": "running"
+      }
+    ],
+    "input_payload": {
+      "company": "Acme Labs",
+      "email": "taylor@example.com",
+      "goal": "identify and contact qualified leads",
+      "graph_name": "lead_generation",
+      "prospect_name": "Taylor",
+      "research_query": "Acme Labs B2B growth",
+      "website": "https://example.com/acme"
+    },
+    "lead_score": 85,
+    "llm_route": {
+      "fallbacks": [],
+      "model": "grok-2",
+      "provider": "none",
+      "tier": "standard"
+    },
+    "memory": [
+      {
+        "content": {
+          "company": "Acme Labs",
+          "query": "Acme Labs B2B growth",
+          "scraped_page": {
+            "content": "Scraped content from https://example.com/acme",
+            "tool": "browser.scraper",
+            "url": "https://example.com/acme"
+          },
+          "search_results": {
+            "query": "Acme Labs B2B growth",
+            "results": [
+              {
+                "title": "Acme Labs B2B growth overview",
+                "url": "https://example.com/acme-labs-b2b-growth"
+              },
+              {
+                "title": "Acme Labs B2B growth pricing",
+                "url": "https://example.com/acme-labs-b2b-growth/pricing"
+              }
+            ],
+            "tool": "browser.search"
+          },
+          "summary": "Collected context for Acme Labs B2B growth"
+        },
+        "step": "memory"
+      }
+    ],
+    "next_node": null,
+    "output_payload": {
+      "crm_result": {
+        "airtable": {
+          "payload": {
+            "lead": {
+              "company": "Acme Labs",
+              "email": "taylor@example.com",
+              "goal": "identify and contact qualified leads",
+              "graph_name": "lead_generation",
+              "prospect_name": "Taylor",
+              "research_query": "Acme Labs B2B growth",
+              "website": "https://example.com/acme"
+            },
+            "plan": {
+              "graph_name": "lead_generation",
+              "lead_score": 85,
+              "model": "grok-2",
+              "next_action": "research_and_outreach",
+              "objective": "identify and contact qualified leads",
+              "provider": "none",
+              "tier": "standard"
+            }
+          },
+          "tool": "productivity.airtable",
+          "updated": true
+        },
+        "hubspot": {
+          "payload": {
+            "lead": {
+              "company": "Acme Labs",
+              "email": "taylor@example.com",
+              "goal": "identify and contact qualified leads",
+              "graph_name": "lead_generation",
+              "prospect_name": "Taylor",
+              "research_query": "Acme Labs B2B growth",
+              "website": "https://example.com/acme"
+            },
+            "plan": {
+              "graph_name": "lead_generation",
+              "lead_score": 85,
+              "model": "grok-2",
+              "next_action": "research_and_outreach",
+              "objective": "identify and contact qualified leads",
+              "provider": "none",
+              "tier": "standard"
+            },
+            "research": {
+              "company": "Acme Labs",
+              "query": "Acme Labs B2B growth",
+              "scraped_page": {
+                "content": "Scraped content from https://example.com/acme",
+                "tool": "browser.scraper",
+                "url": "https://example.com/acme"
+              },
+              "search_results": {
+                "query": "Acme Labs B2B growth",
+                "results": [
+                  {
+                    "title": "Acme Labs B2B growth overview",
+                    "url": "https://example.com/acme-labs-b2b-growth"
+                  },
+                  {
+                    "title": "Acme Labs B2B growth pricing",
+                    "url": "https://example.com/acme-labs-b2b-growth/pricing"
+                  }
+                ],
+                "tool": "browser.search"
+              },
+              "summary": "Collected context for Acme Labs B2B growth"
+            }
+          },
+          "synced": true,
+          "tool": "crm.hubspot"
+        },
+        "notion": {
+          "payload": {
+            "lead": {
+              "company": "Acme Labs",
+              "email": "taylor@example.com",
+              "goal": "identify and contact qualified leads",
+              "graph_name": "lead_generation",
+              "prospect_name": "Taylor",
+              "research_query": "Acme Labs B2B growth",
+              "website": "https://example.com/acme"
+            },
+            "plan": {
+              "graph_name": "lead_generation",
+              "lead_score": 85,
+              "model": "grok-2",
+              "next_action": "research_and_outreach",
+              "objective": "identify and contact qualified leads",
+              "provider": "none",
+              "tier": "standard"
+            }
+          },
+          "tool": "productivity.notion",
+          "updated": true
+        },
+        "salesforce": {
+          "payload": {
+            "lead": {
+              "company": "Acme Labs",
+              "email": "taylor@example.com",
+              "goal": "identify and contact qualified leads",
+              "graph_name": "lead_generation",
+              "prospect_name": "Taylor",
+              "research_query": "Acme Labs B2B growth",
+              "website": "https://example.com/acme"
+            },
+            "plan": {
+              "graph_name": "lead_generation",
+              "lead_score": 85,
+              "model": "grok-2",
+              "next_action": "research_and_outreach",
+              "objective": "identify and contact qualified leads",
+              "provider": "none",
+              "tier": "standard"
+            },
+            "research": {
+              "company": "Acme Labs",
+              "query": "Acme Labs B2B growth",
+              "scraped_page": {
+                "content": "Scraped content from https://example.com/acme",
+                "tool": "browser.scraper",
+                "url": "https://example.com/acme"
+              },
+              "search_results": {
+                "query": "Acme Labs B2B growth",
+                "results": [
+                  {
+                    "title": "Acme Labs B2B growth overview",
+                    "url": "https://example.com/acme-labs-b2b-growth"
+                  },
+                  {
+                    "title": "Acme Labs B2B growth pricing",
+                    "url": "https://example.com/acme-labs-b2b-growth/pricing"
+                  }
+                ],
+                "tool": "browser.search"
+              },
+              "summary": "Collected context for Acme Labs B2B growth"
+            }
+          },
+          "synced": true,
+          "tool": "crm.salesforce"
+        },
+        "sheets": {
+          "payload": {
+            "lead": {
+              "company": "Acme Labs",
+              "email": "taylor@example.com",
+              "goal": "identify and contact qualified leads",
+              "graph_name": "lead_generation",
+              "prospect_name": "Taylor",
+              "research_query": "Acme Labs B2B growth",
+              "website": "https://example.com/acme"
+            },
+            "plan": {
+              "graph_name": "lead_generation",
+              "lead_score": 85,
+              "model": "grok-2",
+              "next_action": "research_and_outreach",
+              "objective": "identify and contact qualified leads",
+              "provider": "none",
+              "tier": "standard"
+            }
+          },
+          "tool": "productivity.sheets",
+          "updated": true
+        }
+      },
+      "email_result": {
+        "body": "Hi Taylor,\n\nI reviewed Acme Labs and put together a short note based on identify and contact qualified leads. Your lead score is 85 out of 100, which makes this a good fit for outreach.\n\nIf you\u2019d like, I can share the rest of the workflow details.",
+        "status": "queued",
+        "subject": "Identify And Contact Qualified Leads for Acme Labs",
+        "to": "taylor@example.com",
+        "tool": "communication.gmail"
+      },
+      "execution_id": "execution_3a6838a41582",
+      "lead_score": 85,
+      "llm_route": {
+        "fallbacks": [],
+        "model": "grok-2",
+        "provider": "none",
+        "tier": "standard"
+      },
+      "personalization": "Hi Taylor,\n\nI reviewed Acme Labs and put together a short note based on identify and contact qualified leads. Your lead score is 85 out of 100, which makes this a good fit for outreach.\n\nIf you\u2019d like, I can share the rest of the workflow details.",
+      "plan": {
+        "graph_name": "lead_generation",
+        "lead_score": 85,
+        "model": "grok-2",
+        "next_action": "research_and_outreach",
+        "objective": "identify and contact qualified leads",
+        "provider": "none",
+        "tier": "standard"
+      },
+      "research": {
+        "company": "Acme Labs",
+        "query": "Acme Labs B2B growth",
+        "scraped_page": {
+          "content": "Scraped content from https://example.com/acme",
+          "tool": "browser.scraper",
+          "url": "https://example.com/acme"
+        },
+        "search_results": {
+          "query": "Acme Labs B2B growth",
+          "results": [
+            {
+              "title": "Acme Labs B2B growth overview",
+              "url": "https://example.com/acme-labs-b2b-growth"
+            },
+            {
+              "title": "Acme Labs B2B growth pricing",
+              "url": "https://example.com/acme-labs-b2b-growth/pricing"
+            }
+          ],
+          "tool": "browser.search"
+        },
+        "summary": "Collected context for Acme Labs B2B growth"
+      },
+      "status": "completed",
+      "summary": "Prepared outreach for Acme Labs",
+      "trace": [
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "next_node",
+            "plan",
+            "status",
+            "trace",
+            "visited_nodes",
+            "workflow_config",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": "routing",
+          "node": "planning",
+          "status": "running"
+        },
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "next_node",
+            "plan",
+            "route_decision",
+            "status",
+            "trace",
+            "visited_nodes",
+            "workflow_config",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": "retrieval",
+          "node": "routing",
+          "status": "running"
+        },
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "next_node",
+            "plan",
+            "retrieved_context",
+            "route_decision",
+            "status",
+            "trace",
+            "visited_nodes",
+            "workflow_config",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": "memory",
+          "node": "retrieval",
+          "status": "running"
+        },
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "memory",
+            "next_node",
+            "plan",
+            "retrieved_context",
+            "route_decision",
+            "status",
+            "trace",
+            "visited_nodes",
+            "workflow_config",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": "validation",
+          "node": "memory",
+          "status": "running"
+        },
+        {
+          "keys": [
+            "current_node",
+            "execution_id",
+            "graph_name",
+            "history",
+            "llm_route",
+            "memory",
+            "next_node",
+            "plan",
+            "retrieved_context",
+            "route_decision",
+            "status",
+            "trace",
+            "validation",
+            "visited_nodes",
+            "workflow_config",
+            "workflow_definition",
+            "workflow_id"
+          ],
+          "next_node": "tool_execution",
+          "node": "validation",
+          "status": "running"
+        },
+        {
+          "email": {
+            "body": "Hi Taylor,\n\nI reviewed Acme Labs and put together a short note based on identify and contact qualified leads. Your lead score is 85 out of 100, which makes this a good fit for outreach.\n\nIf you\u2019d like, I can share the rest of the workflow details.",
+            "status": "queued",
+            "subject": "Identify And Contact Qualified Leads for Acme Labs",
+            "to": "taylor@example.com",
+            "tool": "communication.gmail"
+          },
+          "plan": {
+            "graph_name": "lead_generation",
+            "lead_score": 85,
+            "model": "grok-2",
+            "next_action": "research_and_outreach",
+            "objective": "identify and contact qualified leads",
+            "provider": "none",
+            "tier": "standard"
+          },
+          "research": {
+            "company": "Acme Labs",
+            "query": "Acme Labs B2B growth",
+            "scraped_page": {
+              "content": "Scraped content from https://example.com/acme",
+              "tool": "browser.scraper",
+              "url": "https://example.com/acme"
+            },
+            "search_results": {
+              "query": "Acme Labs B2B growth",
+              "results": [
+                {
+                  "title": "Acme Labs B2B growth overview",
+                  "url": "https://example.com/acme-labs-b2b-growth"
+                },
+                {
+                  "title": "Acme Labs B2B growth pricing",
+                  "url": "https://example.com/acme-labs-b2b-growth/pricing"
+                }
+              ],
+              "tool": "browser.search"
+            },
+            "summary": "Collected context for Acme Labs B2B growth"
+          },
+          "stage": "lead_generation"
+        }
+      ],
+      "workflow_id": "workflow_a824db1f3768"
+    },
+    "personalization": "Hi Taylor,\n\nI reviewed Acme Labs and put together a short note based on identify and contact qualified leads. Your lead score is 85 out of 100, which makes this a good fit for outreach.\n\nIf you\u2019d like, I can share the rest of the workflow details.",
+    "plan": {
+      "graph_name": "lead_generation",
+      "lead_score": 85,
+      "model": "grok-2",
+      "next_action": "research_and_outreach",
+      "objective": "identify and contact qualified leads",
+      "provider": "none",
+      "tier": "standard"
+    },
+    "research": {
+      "company": "Acme Labs",
+      "query": "Acme Labs B2B growth",
+      "scraped_page": {
+        "content": "Scraped content from https://example.com/acme",
+        "tool": "browser.scraper",
+        "url": "https://example.com/acme"
+      },
+      "search_results": {
+        "query": "Acme Labs B2B growth",
+        "results": [
+          {
+            "title": "Acme Labs B2B growth overview",
+            "url": "https://example.com/acme-labs-b2b-growth"
+          },
+          {
+            "title": "Acme Labs B2B growth pricing",
+            "url": "https://example.com/acme-labs-b2b-growth/pricing"
+          }
+        ],
+        "tool": "browser.search"
+      },
+      "summary": "Collected context for Acme Labs B2B growth"
+    },
+    "retrieved_context": {
+      "company": "Acme Labs",
+      "query": "Acme Labs B2B growth",
+      "scraped_page": {
+        "content": "Scraped content from https://example.com/acme",
+        "tool": "browser.scraper",
+        "url": "https://example.com/acme"
+      },
+      "search_results": {
+        "query": "Acme Labs B2B growth",
+        "results": [
+          {
+            "title": "Acme Labs B2B growth overview",
+            "url": "https://example.com/acme-labs-b2b-growth"
+          },
+          {
+            "title": "Acme Labs B2B growth pricing",
+            "url": "https://example.com/acme-labs-b2b-growth/pricing"
+          }
+        ],
+        "tool": "browser.search"
+      },
+      "summary": "Collected context for Acme Labs B2B growth"
+    },
+    "route_decision": "retrieval",
+    "status": "completed",
+    "summary": "Workflow workflow_a824db1f3768 completed",
+    "trace": [
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "routing",
+        "node": "planning",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "route_decision",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "retrieval",
+        "node": "routing",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "next_node",
+          "plan",
+          "retrieved_context",
+          "route_decision",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "memory",
+        "node": "retrieval",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "memory",
+          "next_node",
+          "plan",
+          "retrieved_context",
+          "route_decision",
+          "status",
+          "trace",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "validation",
+        "node": "memory",
+        "status": "running"
+      },
+      {
+        "keys": [
+          "current_node",
+          "execution_id",
+          "graph_name",
+          "history",
+          "llm_route",
+          "memory",
+          "next_node",
+          "plan",
+          "retrieved_context",
+          "route_decision",
+          "status",
+          "trace",
+          "validation",
+          "visited_nodes",
+          "workflow_config",
+          "workflow_definition",
+          "workflow_id"
+        ],
+        "next_node": "tool_execution",
+        "node": "validation",
+        "status": "running"
+      },
+      {
+        "email": {
+          "body": "Hi Taylor,\n\nI reviewed Acme Labs and put together a short note based on identify and contact qualified leads. Your lead score is 85 out of 100, which makes this a good fit for outreach.\n\nIf you\u2019d like, I can share the rest of the workflow details.",
+          "status": "queued",
+          "subject": "Identify And Contact Qualified Leads for Acme Labs",
+          "to": "taylor@example.com",
+          "tool": "communication.gmail"
+        },
+        "plan": {
+          "graph_name": "lead_generation",
+          "lead_score": 85,
+          "model": "grok-2",
+          "next_action": "research_and_outreach",
+          "objective": "identify and contact qualified leads",
+          "provider": "none",
+          "tier": "standard"
+        },
+        "research": {
+          "company": "Acme Labs",
+          "query": "Acme Labs B2B growth",
+          "scraped_page": {
+            "content": "Scraped content from https://example.com/acme",
+            "tool": "browser.scraper",
+            "url": "https://example.com/acme"
+          },
+          "search_results": {
+            "query": "Acme Labs B2B growth",
+            "results": [
+              {
+                "title": "Acme Labs B2B growth overview",
+                "url": "https://example.com/acme-labs-b2b-growth"
+              },
+              {
+                "title": "Acme Labs B2B growth pricing",
+                "url": "https://example.com/acme-labs-b2b-growth/pricing"
+              }
+            ],
+            "tool": "browser.search"
+          },
+          "summary": "Collected context for Acme Labs B2B growth"
+        },
+        "stage": "lead_generation"
+      }
+    ],
+    "validation": {
+      "ok": true
+    },
+    "visited_nodes": [
+      "planning",
+      "routing",
+      "retrieval",
+      "memory",
+      "validation",
+      "tool_execution"
+    ],
+    "workflow_config": {
+      "graph_name": "lead_generation",
+      "metadata": {},
+      "steps": [],
+      "tools": [],
+      "workflow_type": "automation"
+    },
+    "workflow_definition": {
+      "graph_name": "lead_generation"
+    },
+    "workflow_id": "workflow_a824db1f3768"
+  },
+  "workflow_definition": {
+    "graph_name": "lead_generation"
+  },
+  "workflow_id": "workflow_a824db1f3768"
+}
