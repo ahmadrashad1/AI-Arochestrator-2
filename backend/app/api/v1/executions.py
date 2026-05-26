@@ -9,6 +9,7 @@ from fastapi.responses import StreamingResponse
 from app.core.dependencies import get_current_tenant, require_permission
 from app.orchestrator.dependencies import get_execution_manager
 from shared.schemas.execution import ExecutionOut, ExecutionProgressOut, ExecutionStatusOut
+from app.observability.llm_usage import get_usage_for_execution
 
 router = APIRouter(tags=["executions"])
 
@@ -43,6 +44,37 @@ def get_execution_status(execution_id: str, current_tenant=Depends(get_current_t
     if execution is None or execution.tenant_id != current_tenant.id:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Execution not found")
     return _status_out(execution, execution_manager)
+
+
+@router.get("/executions/{execution_id}/trace", dependencies=[Depends(require_permission("executions:read"))])
+def get_execution_trace(execution_id: str, current_tenant=Depends(get_current_tenant), execution_manager=Depends(get_execution_manager)) -> dict:
+    execution = execution_manager.get_execution(execution_id)
+    if execution is None or execution.tenant_id != current_tenant.id:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Execution not found")
+    output = json.loads(execution.output_payload_json) if execution.output_payload_json else {}
+    return {"execution_id": execution.id, "trace": output.get("trace", [])}
+
+
+@router.get("/executions/{execution_id}/timeline", dependencies=[Depends(require_permission("executions:read"))])
+def get_execution_timeline(execution_id: str, current_tenant=Depends(get_current_tenant), execution_manager=Depends(get_execution_manager)) -> dict:
+    execution = execution_manager.get_execution(execution_id)
+    if execution is None or execution.tenant_id != current_tenant.id:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Execution not found")
+    history = [ExecutionProgressOut(**entry) for entry in execution_manager.get_execution_history(execution.id)]
+    output = json.loads(execution.output_payload_json) if execution.output_payload_json else {}
+    trace = output.get("trace", [])
+    return {"execution": _execution_out(execution), "history": [h.model_dump() for h in history], "trace": trace}
+
+
+@router.get("/executions/{execution_id}/cost", dependencies=[Depends(require_permission("executions:read"))])
+def get_execution_cost(execution_id: str, current_tenant=Depends(get_current_tenant), execution_manager=Depends(get_execution_manager)) -> dict:
+    execution = execution_manager.get_execution(execution_id)
+    if execution is None or execution.tenant_id != current_tenant.id:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Execution not found")
+    # Return cost info from in-memory llm usage tracker and any output payload cost info
+    usage = get_usage_for_execution(execution.id)
+    output = json.loads(execution.output_payload_json) if execution.output_payload_json else {}
+    return {"execution_id": execution.id, "llm_usage": usage, "output_cost_summary": output.get("cost_summary")}
 
 
 @router.get("/executions/{execution_id}/events", dependencies=[Depends(require_permission("executions:read"))])
