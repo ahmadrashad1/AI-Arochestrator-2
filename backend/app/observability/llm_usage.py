@@ -3,8 +3,9 @@ from __future__ import annotations
 from typing import Any
 from dataclasses import dataclass, field
 from app.observability import metrics
-from app.llm.cost_tracker import CostTracker, cost_tracker
 from app.core.logging import get_logger
+from app.database.session import SessionLocal
+from app.database.models.usage import LLMUsage
 
 logger = get_logger("llm_usage")
 
@@ -44,11 +45,41 @@ def record_llm_usage(execution_id: str, tenant_id: str | None, provider: str, mo
         _USAGE_CACHE[key] = ExecutionLLMUsage(execution_id=execution_id, tenant_id=tenant_id)
     cost_rec = None
     try:
+        from app.llm.cost_tracker import cost_tracker
+
         cost = cost_tracker.record(provider, model, tier, prompt_tokens or 0, completion_tokens or 0)
         cost_rec = cost
     except Exception:
         cost_rec = None
-    return _USAGE_CACHE[key].record(provider, model, tier, prompt_tokens, completion_tokens, cost_usd=(cost_rec or {}).get("cost_usd") if cost_rec else None, latency_ms=latency_ms)
+    rec = _USAGE_CACHE[key].record(provider, model, tier, prompt_tokens, completion_tokens, cost_usd=(cost_rec or {}).get("cost_usd") if cost_rec else None, latency_ms=latency_ms)
+
+    # Persist to database if DB backend is enabled
+    try:
+        # create a session directly so this function can be called from background workers
+        session = SessionLocal()
+        try:
+            db_obj = LLMUsage(
+                id=f"llm_{execution_id}_{len(_USAGE_CACHE.get(key).calls)}",
+                tenant_id=tenant_id,
+                execution_id=execution_id,
+                workflow_id=None,
+                provider=provider,
+                model=model,
+                tier=tier,
+                prompt_tokens=prompt_tokens or 0,
+                completion_tokens=completion_tokens or 0,
+                cost_usd=(cost_rec or {}).get("cost_usd") if cost_rec else None,
+                latency_ms=latency_ms,
+            )
+            session.add(db_obj)
+            session.commit()
+        finally:
+            session.close()
+    except Exception:
+        # If DB not available or error occurs, we still keep in-memory record for debugging
+        pass
+
+    return rec
 
 
 def get_usage_for_execution(execution_id: str) -> dict[str, Any]:

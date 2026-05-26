@@ -9,7 +9,6 @@ from app.llm.prompt_manager import PromptManager, prompt_manager
 from app.llm.token_tracker import TokenTracker, token_tracker
 import os
 from time import perf_counter
-from app.observability.llm_usage import record_llm_usage
 
 from app.llm.providers import AnthropicProvider, BaseLLMProvider, GeminiProvider, GrokProvider, LLMProviderError, LLMResult, OpenAIProvider
 from app.llm.providers.base import NoopProvider
@@ -154,6 +153,8 @@ class LLMRouter:
                     pass
                 # Record per-execution LLM usage if execution context provided
                 try:
+                    from app.observability.llm_usage import record_llm_usage
+
                     record_llm_usage(execution_id or "", tenant_id, provider.provider_name, result.model, normalized_tier, prompt_tokens, completion_tokens, latency_ms)
                 except Exception:
                     pass

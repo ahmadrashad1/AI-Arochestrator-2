@@ -18,3 +18,19 @@ class Usage(TimestampMixin, Base):
     period_start: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     period_end: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     metadata_json: Mapped[str] = mapped_column(Text, nullable=False, default="{}")
+
+
+class LLMUsage(TimestampMixin, Base):
+    __tablename__ = "llm_usage"
+
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    tenant_id: Mapped[str] = mapped_column(ForeignKey("tenants.id", ondelete="CASCADE"), index=True, nullable=True)
+    execution_id: Mapped[str] = mapped_column(String(64), index=True, nullable=False)
+    workflow_id: Mapped[str] = mapped_column(String(64), index=True, nullable=True)
+    provider: Mapped[str] = mapped_column(String(64), nullable=False)
+    model: Mapped[str] = mapped_column(String(128), nullable=False)
+    tier: Mapped[str] = mapped_column(String(64), nullable=True)
+    prompt_tokens: Mapped[int] = mapped_column(Integer, nullable=True)
+    completion_tokens: Mapped[int] = mapped_column(Integer, nullable=True)
+    cost_usd: Mapped[float] = mapped_column(Integer, nullable=True)
+    latency_ms: Mapped[int] = mapped_column(Integer, nullable=True)

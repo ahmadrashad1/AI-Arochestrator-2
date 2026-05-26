@@ -9,6 +9,7 @@ from app.database.repositories.base import store
 from app.database.repositories.execution_repository import ExecutionRepository
 from app.database.repositories.tenant_repository import TenantRepository
 from app.database.repositories.usage_repository import UsageRepository
+from app.database.repositories.llm_usage_repository import LLMUsageRepository
 from app.database.repositories.tool_quota_repository import ToolQuotaRepository
 from app.database.repositories.user_repository import UserRepository
 from app.database.repositories.workflow_repository import WorkflowRepository
@@ -54,6 +55,12 @@ def get_usage_repository(session: Session | None = Depends(get_session)) -> Usag
 	if not _use_database_backend():
 		return UsageRepository(store)
 	return UsageRepository(store, session=session)
+
+
+def get_llm_usage_repository(session: Session | None = Depends(get_session)) -> LLMUsageRepository:
+	if not _use_database_backend():
+		return LLMUsageRepository(store)
+	return LLMUsageRepository(store, session=session)
 
 
 def get_tool_quota_repository(session: Session | None = Depends(get_session)) -> ToolQuotaRepository:
