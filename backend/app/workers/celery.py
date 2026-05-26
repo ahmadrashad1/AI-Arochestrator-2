@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone, timedelta
 from threading import RLock
 from typing import Any
@@ -133,7 +133,7 @@ class RedisQueueBackend:
 			max_attempts=max_attempts,
 		)
 		key = f"queue:{name}"
-		self._redis.rpush(key, json.dumps(task.__dict__, default=str))
+		self._redis.rpush(key, json.dumps(asdict(task), default=str))
 		return task
 
 	def claim_ready(self, now: datetime | None = None, name: str | None = None) -> QueueTask | None:
@@ -180,11 +180,11 @@ class RedisQueueBackend:
 		# remove from processing list and schedule in delayed set
 		processing_list = f"processing:{task.name}"
 		try:
-			self._redis.lrem(processing_list, 0, json.dumps(task.__dict__, default=str))
+			self._redis.lrem(processing_list, 0, json.dumps(asdict(task), default=str))
 		except Exception:
 			pass
 		delayed_key = f"queue:delayed:{task.name}"
-		member = json.dumps(task.__dict__, default=str)
+		member = json.dumps(asdict(task), default=str)
 		score = (datetime.now(timezone.utc) + timedelta(seconds=delay_seconds)).timestamp()
 		self._redis.zadd(delayed_key, {member: score})
 		return task
@@ -192,12 +192,12 @@ class RedisQueueBackend:
 	def dead_letter(self, task: QueueTask, reason: str) -> QueueTask:
 		processing_list = f"processing:{task.name}"
 		try:
-			self._redis.lrem(processing_list, 0, json.dumps(task.__dict__, default=str))
+			self._redis.lrem(processing_list, 0, json.dumps(asdict(task), default=str))
 		except Exception:
 			pass
 		key = f"queue:dead:{task.name}"
 		task.dead_letter_reason = reason
-		self._redis.rpush(key, json.dumps(task.__dict__, default=str))
+		self._redis.rpush(key, json.dumps(asdict(task), default=str))
 		return task
 
 	def ack(self, task: QueueTask) -> None:
@@ -205,7 +205,7 @@ class RedisQueueBackend:
 		processing_list = f"processing:{task.name}"
 		vis_key = f"processing:vis:{task.name}"
 		try:
-			self._redis.lrem(processing_list, 0, json.dumps(task.__dict__, default=str))
+			self._redis.lrem(processing_list, 0, json.dumps(asdict(task), default=str))
 			self._redis.hdel(vis_key, task.id)
 		except Exception:
 			pass

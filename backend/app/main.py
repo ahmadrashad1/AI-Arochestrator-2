@@ -1,5 +1,7 @@
 from fastapi import FastAPI, Response
 from contextlib import asynccontextmanager
+from fastapi.middleware.cors import CORSMiddleware
+import os
 
 from app.api.v1.auth import router as auth_router
 from app.api.v1.tenants import router as tenants_router
@@ -32,6 +34,15 @@ app = FastAPI(title="AI Orchestrator SaaS API", version="0.2.0", lifespan=lifesp
 from app.observability import metrics
 
 app.add_middleware(RequestContextMiddleware)
+
+cors_origins = [origin.strip() for origin in os.environ.get("CORS_ORIGINS", "http://localhost:3000,http://frontend:3000").split(",") if origin.strip()]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=cors_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/metrics")

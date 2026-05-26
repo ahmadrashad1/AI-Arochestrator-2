@@ -24,33 +24,42 @@ services:
       - qdrant_data:/qdrant/storage
 
   app:
-    image: python:3.11-slim
-    working_dir: /workspace/backend
-    volumes:
-      - ./:/workspace
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
     environment:
       - REDIS_URL=redis://redis:6379/0
       # use sqlite for local compose demo to avoid postgres driver dependency
       - DATABASE_URL=sqlite:///./app_dev.db
       - ALERTMANAGER_URL=http://alertmanager:9093
-      - PYTHONPATH=/workspace
-    command: ["bash", "-lc", "pip install -r requirements.txt && PYTHONPATH=/workspace uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+      - PYTHONPATH=/app
     ports:
       - '8000:8000'
     depends_on:
       - redis
       - postgres
 
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_BASE_URL: http://localhost:8000
+    environment:
+      - NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
+    ports:
+      - '3000:3000'
+    depends_on:
+      - app
+
   celery:
-    image: python:3.11-slim
-    working_dir: /workspace/backend
-    volumes:
-      - ./:/workspace
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
     environment:
       - REDIS_URL=redis://redis:6379/0
       - DATABASE_URL=sqlite:///./app_dev.db
-      - PYTHONPATH=/workspace
-    command: ["bash", "-lc", "pip install -r requirements.txt && PYTHONPATH=/workspace python -m celery -A app.workers.celery_worker worker --loglevel=info"]
+      - PYTHONPATH=/app
+    command: ["python", "-m", "celery", "-A", "app.workers.celery_worker", "worker", "--loglevel=info"]
     depends_on:
       - redis
       - postgres
