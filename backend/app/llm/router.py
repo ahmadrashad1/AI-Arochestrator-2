@@ -8,6 +8,8 @@ from app.llm.cost_tracker import CostTracker, cost_tracker
 from app.llm.prompt_manager import PromptManager, prompt_manager
 from app.llm.token_tracker import TokenTracker, token_tracker
 import os
+from time import perf_counter
+from app.observability.llm_usage import record_llm_usage
 
 from app.llm.providers import AnthropicProvider, BaseLLMProvider, GeminiProvider, GrokProvider, LLMProviderError, LLMResult, OpenAIProvider
 from app.llm.providers.base import NoopProvider
@@ -108,6 +110,10 @@ class LLMRouter:
         temperature: float = 0.0,
         max_tokens: int = 512,
         preferred_provider: str | None = None,
+        execution_id: str | None = None,
+        tenant_id: str | None = None,
+        workflow_id: str | None = None,
+        agent: str | None = None,
     ) -> LLMResult:
         normalized_tier = self._normalize_tier(tier)
         message_list = self._message_list(prompt=prompt, messages=messages)
@@ -132,7 +138,9 @@ class LLMRouter:
                 fallbacks=self._fallback_chain(provider.provider_name),
             )
             try:
+                start = perf_counter()
                 result = provider.complete(messages=message_list, model=model, temperature=temperature, max_tokens=max_tokens)
+                latency_ms = int((perf_counter() - start) * 1000)
                 prompt_tokens = result.prompt_tokens
                 completion_tokens = result.completion_tokens
                 if prompt_tokens is None or completion_tokens is None:
@@ -142,6 +150,11 @@ class LLMRouter:
                 self.cost_tracker.record(provider.provider_name, result.model, normalized_tier, prompt_tokens, completion_tokens)
                 try:
                     metrics.record_llm_call(provider.provider_name, result.model, normalized_tier, True, prompt_tokens=prompt_tokens, completion_tokens=completion_tokens)
+                except Exception:
+                    pass
+                # Record per-execution LLM usage if execution context provided
+                try:
+                    record_llm_usage(execution_id or "", tenant_id, provider.provider_name, result.model, normalized_tier, prompt_tokens, completion_tokens, latency_ms)
                 except Exception:
                     pass
                 log_llm_call(
